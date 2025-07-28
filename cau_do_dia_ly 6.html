@@ -1,0 +1,173 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Câu đố địa lý: Trái Đất trong hệ Mặt Trời</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f5f9ff;
+      padding: 30px;
+    }
+    .quiz-box {
+      background: white;
+      border: 1px solid #ccc;
+      padding: 20px;
+      margin-bottom: 25px;
+      border-radius: 10px;
+      box-shadow: 2px 2px 6px rgba(0,0,0,0.05);
+    }
+    .question {
+      font-weight: bold;
+      margin-bottom: 12px;
+    }
+    .options button {
+      display: block;
+      margin: 8px 0;
+      padding: 10px 15px;
+      width: 100%;
+      text-align: left;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      background-color: #f0f0f0;
+      cursor: pointer;
+    }
+    .options button:hover {
+      background-color: #e0e0e0;
+    }
+    .correct {
+      background-color: #d4edda;
+      border-color: green;
+      color: green;
+    }
+    .incorrect {
+      background-color: #f8d7da;
+      border-color: red;
+      color: red;
+    }
+    .feedback {
+      margin-top: 10px;
+      font-size: 18px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🌍 Trò chơi câu đố địa lý: Trái Đất trong hệ Mặt Trời</h1>
+
+  <div id="quiz-container"></div>
+
+  <script>
+    const questions = [
+      {
+        question: "1. Vị trí của Trái Đất trong hệ Mặt Trời là:",
+        options: [
+          "A. Hành tinh gần Mặt Trời nhất",
+          "B. Hành tinh xa Mặt Trời nhất",
+          "C. Hành tinh thứ ba tính từ Mặt Trời",
+          "D. Hành tinh lớn nhất trong hệ Mặt Trời"
+        ],
+        correct: 2,
+        explanation: "✅ Đáp án đúng: C. Trái Đất là hành tinh thứ ba tính từ Mặt Trời."
+      },
+      {
+        question: "2. Hiện tượng ngày đêm luân phiên xảy ra do:",
+        options: [
+          "A. Trái Đất chuyển động quanh Mặt Trời",
+          "B. Trái Đất hình cầu",
+          "C. Trái Đất tự quay quanh trục",
+          "D. Mặt Trăng quay quanh Trái Đất"
+        ],
+        correct: 2,
+        explanation: "✅ Đáp án đúng: C. Trái Đất tự quay quanh trục tạo ra ngày đêm luân phiên."
+      },
+      {
+        question: "3. Thành phần khí nào chiếm tỉ lệ lớn nhất trong khí quyển Trái Đất?",
+        options: [
+          "A. Oxi",
+          "B. Nitơ",
+          "C. Cacbonic",
+          "D. Heli"
+        ],
+        correct: 1,
+        explanation: "✅ Đáp án đúng: B. Khí Nitơ chiếm tỉ lệ lớn nhất trong khí quyển."
+      },
+      {
+        question: "4. Trái Đất có hình dạng gần giống như:",
+        options: [
+          "A. Một mặt phẳng",
+          "B. Một hình lập phương",
+          "C. Một khối cầu hơi dẹt ở hai cực",
+          "D. Một hình chóp nhọn"
+        ],
+        correct: 2,
+        explanation: "✅ Đáp án đúng: C. Trái Đất có dạng khối cầu hơi dẹt ở hai cực."
+      },
+      {
+        question: "5. Lớp khí bao quanh Trái Đất được gọi là:",
+        options: [
+          "A. Thạch quyển",
+          "B. Khí quyển",
+          "C. Sinh quyển",
+          "D. Thủy quyển"
+        ],
+        correct: 1,
+        explanation: "✅ Đáp án đúng: B. Lớp khí bao quanh Trái Đất là khí quyển."
+      },
+      {
+        question: "6. Mặt Trời mọc ở đâu và lặn ở đâu?",
+        options: [
+          "A. Tây, Đông",
+          "B. Nam, Bắc",
+          "C. Đông, Tây",
+          "D. Bắc, Nam"
+        ],
+        correct: 2,
+        explanation: "✅ Đáp án đúng: C. Mặt Trời mọc ở Đông và lặn ở Tây."
+      }
+    ];
+
+    const quizContainer = document.getElementById("quiz-container");
+
+    questions.forEach((q, index) => {
+      const box = document.createElement("div");
+      box.className = "quiz-box";
+
+      const questionEl = document.createElement("div");
+      questionEl.className = "question";
+      questionEl.textContent = q.question;
+
+      const optionsContainer = document.createElement("div");
+      optionsContainer.className = "options";
+
+      const feedback = document.createElement("div");
+      feedback.className = "feedback";
+
+      q.options.forEach((option, i) => {
+        const btn = document.createElement("button");
+        btn.textContent = option;
+        btn.onclick = () => {
+          const buttons = optionsContainer.querySelectorAll("button");
+          buttons.forEach(b => b.disabled = true);
+
+          if (i === q.correct) {
+            btn.classList.add("correct");
+            feedback.textContent = "✅ Chính xác!";
+          } else {
+            btn.classList.add("incorrect");
+            feedback.textContent = "❌ Sai rồi! " + q.explanation;
+          }
+        };
+        optionsContainer.appendChild(btn);
+      });
+
+      box.appendChild(questionEl);
+      box.appendChild(optionsContainer);
+      box.appendChild(feedback);
+      quizContainer.appendChild(box);
+    });
+  </script>
+
+</body>
+</html>
